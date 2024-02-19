@@ -11,4 +11,11 @@ jobs:
       - run: |
           dotnet tool restore
           dotnet csharpier --check .
+  run_tests:
+    runs-on: ubuntu-latest
+    name: Run Tests
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          dotnet test
 
