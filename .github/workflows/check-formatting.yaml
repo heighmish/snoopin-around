@@ -1,13 +1,21 @@
-name: Validate Pull Request Formatting
+name: Validate PR
 on:
   pull_request:
     branches: [ main ]
 jobs:
-    check_formatting:
-      runs-on: ubuntu-latest
-      name: Check Formatting
-      steps:
-        - uses: actions/checkout@v2
-        - runs: |
-            dotnet tool restore
-            dotnet csharpier --check .
+  check_formatting:
+    runs-on: ubuntu-latest
+    name: Check Formatting
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          dotnet tool restore
+          dotnet csharpier --check .
+  run_tests:
+    runs-on: ubuntu-latest
+    name: Run Tests
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          dotnet test
+
